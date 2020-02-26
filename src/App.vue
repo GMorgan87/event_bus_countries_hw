@@ -3,13 +3,14 @@
     <h1>Countries</h1>
     <div class="main-container">
       <country-select :countries='countries'></country-select>
+      <country-details :country='selectedCountry'></country-details>
     </div>
   </div>
 </template>
 
 <script>
 import CountrySelect from './components/CountrySelect.vue';
-// import CountryDetails from './components/CountryDetails.vue';
+import CountryDetails from './components/CountryDetails.vue';
 import {eventBus} from './main.js';
 
 export default {
@@ -31,14 +32,13 @@ export default {
   },
   components: {
     "country-select": CountrySelect,
-    // "country-details": CountryDetails
+    "country-details": CountryDetails
   }
 }
 </script>
 
 <style>
   .main-container {
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
 </style>

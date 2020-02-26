@@ -1,10 +1,9 @@
 <template lang="html">
   <div class="country-select">
-    <select class="countries" v-model="selectedCountry">
+    <select class="countries" v-model="selectedCountryIndex" @change="getSelectedCountry">
       <option disabled value="">Choose country</option>
       <option :value="index" v-for="(country, index) in this.countries">{{country.name}}</option>
     </select>
-    <button @click="handleClick">View country details</button>
   </div>
 </template>
 
@@ -16,15 +15,25 @@ export default {
   name: 'country-select',
   props: ['countries'],
   data() {
-    return {selectedCountry: null}
+    return {selectedCountryIndex: null}
   },
   methods: {
-    handleClick() {
+    getSelectedCountry: function() {
       eventBus.$emit('country-selected', this.selectedCountry)
+    }
+  },
+  computed: {
+    selectedCountry: function() {
+      return this.countries[this.selectedCountryIndex]
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+
+  .country-select {
+    margin: 0 auto;
+  }
+
 </style>

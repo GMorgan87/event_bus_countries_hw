@@ -1,9 +1,16 @@
 <template lang="html">
-  <div class="country-select">
+  <!-- <div class="country-select">
     <select class="countries" v-model="selectedCountryIndex" @change="getSelectedCountry">
       <option disabled value="">Choose country</option>
       <option :value="index" v-for="(country, index) in this.countries">{{country.name}}</option>
     </select>
+  </div> -->
+  <div class="country-select">
+    <label for="country-select-list">Choose a country:</label>
+      <input list="country-select-list" id="country" v-model="selectedCountryIndex" @change="getSelectedCountry" placeholder="">
+        <datalist id="country-select-list">
+          <option :value="index" v-for="(country, index) in this.countries">{{country.name}}</option>
+        </datalist>
   </div>
 </template>
 
@@ -19,7 +26,8 @@ export default {
   },
   methods: {
     getSelectedCountry: function() {
-      eventBus.$emit('country-selected', this.selectedCountry)
+      eventBus.$emit('country-selected', this.selectedCountry);
+      eventBus.target.reset();
     }
   },
   computed: {

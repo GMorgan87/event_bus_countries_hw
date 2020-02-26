@@ -27,7 +27,7 @@ export default {
   methods: {
     getSelectedCountry: function() {
       eventBus.$emit('country-selected', this.selectedCountry);
-      eventBus.target.reset();
+      this.selectedCountryIndex = "";
     }
   },
   computed: {
